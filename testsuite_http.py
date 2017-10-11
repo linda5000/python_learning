@@ -1,14 +1,13 @@
 import unittest
 import time
 import HTMLTestRunner
-from unittest_20171010 import TestMath
+from unittest_http import TestHttp
 
 
 suite = unittest.TestSuite()
-suite.addTest(TestMath("test_sub"))
+suite.addTest(TestHttp("test_http_get"))
+suite.addTest(TestHttp("test_http_post"))
 
-# runner = unittest.TextTestRunner()
-# runner.run(suite)
 
 now = time.strftime('%Y-%m-%d_%H_%M_%S')
 

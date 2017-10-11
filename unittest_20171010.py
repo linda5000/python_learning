@@ -1,5 +1,5 @@
 import unittest
-from math_c import Math
+from test.math_c import Math
 from parameterized import parameterized
 
 
@@ -7,7 +7,8 @@ class TestMath(unittest.TestCase):
 
 
     def setUp(self):
-        print("test start")
+        pass
+        # print("test start")
 
     @parameterized.expand([
         ("01",1,1,2),
@@ -21,6 +22,8 @@ class TestMath(unittest.TestCase):
             print("测试用例：",name)
         except Exception as e:
             print(e)
+        else:
+            print("add test pass")
 
 
     def test_sub(self):
@@ -31,9 +34,13 @@ class TestMath(unittest.TestCase):
         except AssertionError as e:
             print(e)
         else:
-            print("Sub test pass")
+            pass
+            # print("sub test pass")
 
     def tearDown(self):
-        print("test end")
+        pass
+        # print("test end")
 
 
+if __name__ == '__main__':
+    unittest.main()
