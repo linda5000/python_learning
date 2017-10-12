@@ -1,4 +1,6 @@
 import requests
+import json
+
 class Http_requests:
     def __init__(self, ip):
         self.ip = ip
@@ -8,7 +10,7 @@ class Http_requests:
         try:
             response = requests.get(url, data)
         except Exception as e:
-            return str(e)
+            print(e)
         else:
             return response.text
 
@@ -17,6 +19,6 @@ class Http_requests:
         try:
             response = requests.post(url, data)
         except Exception as e:
-            return str(e)
+            print(e)
         else:
             return response.text

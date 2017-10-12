@@ -13,7 +13,7 @@ now = time.strftime('%Y-%m-%d_%H_%M_%S')
 
 if __name__ == '__main__':
     # 执行测试集合
-    filePath = "pyResult" + now + ".html"
+    filePath = "HttpTestResult" + now + ".html"
     fp = open(filePath,'wb')
 
     # 生成报告的Title,描述
