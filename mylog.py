@@ -1,10 +1,12 @@
 import logging
+import time
+
 
 class Log:
     def __init__(self,name,filename=None):
         self.name = name
         if filename is None:
-            self.filename = 'log.txt'
+            self.filename = 'log_' + time.strftime('%Y_%m_%d') + '.txt'
         else:
             self.filename = filename
         self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

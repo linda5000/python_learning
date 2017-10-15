@@ -5,9 +5,7 @@ from mylog import Log
 
 class TestHttp(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        Log('unittest').info('set up class ran')
+
 
     def test_http_get(self):
         ip = 'http://119.23.241.154:8080/'
@@ -16,7 +14,7 @@ class TestHttp(unittest.TestCase):
         r = Http_requests(ip)
         response = r.get(url,data)
         result =  json.loads(response)['code']
-        self.assertEqual(result,"10001","The result is False")
+        self.assertEqual(result,"10001")
 
 
     def test_http_post(self):
@@ -26,11 +24,9 @@ class TestHttp(unittest.TestCase):
         r = Http_requests(ip)
         response = r.post(url,data)
         result = json.loads(response)['code']
-        self.assertEqual(result,"10001","The result is False")
+        self.assertEqual(result,"10001")
 
-    @classmethod
-    def tearDownClass(cls):
-        Log('unittest').info('tear down class ran')
+
 
 
 if __name__ == '__main__':
