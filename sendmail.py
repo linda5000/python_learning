@@ -26,7 +26,7 @@ class MailCreator:
         msg['To'] = msg_to
 
         # 邮件正文内容
-        text_msg = MIMEText(content,'plain', 'utf-8')
+        text_msg = MIMEText(content,'html', 'utf-8')
         msg.attach(text_msg)
         if attachlist:
             for i in attachlist:
@@ -43,7 +43,7 @@ class MailCreator:
             s = smtplib.SMTP_SSL(self.mailserver,self.port)
             s.login(msg_from,pwd)
             s.sendmail(msg_from,msg_to,msg.as_string())
-            Log('sendmail')("邮件发送成功")
+            Log('sendmail').info("邮件发送成功")
         except Exception as e:
             Log('sendmail').error("邮件发送失败")
         finally:
