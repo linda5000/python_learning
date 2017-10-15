@@ -1,12 +1,13 @@
 import unittest
 import json
 from http_requests import Http_requests
+from mylog import Log
 
 class TestHttp(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        print('set up class ran')
+        Log('unittest').info('set up class ran')
 
     def test_http_get(self):
         ip = 'http://119.23.241.154:8080/'
@@ -29,7 +30,7 @@ class TestHttp(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        print('tear down class ran')
+        Log('unittest').info('tear down class ran')
 
 
 if __name__ == '__main__':

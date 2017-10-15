@@ -4,6 +4,8 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from email.mime.image import MIMEImage
 from email import encoders
+
+
 import logging
 
 class MailCreator:
