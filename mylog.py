@@ -45,18 +45,28 @@ class Log:
 
     def debug(self,content):
         self.logger.debug(content)
+        self.logger.removeHandler(self.sh)
+        self.logger.removeHandler(self.fh)
 
     def info(self,content):
         self.logger.info(content)
+        self.logger.removeHandler(self.sh)
+        self.logger.removeHandler(self.fh)
 
     def warning(self, content):
         self.logger.warning(content)
+        self.logger.removeHandler(self.sh)
+        self.logger.removeHandler(self.fh)
 
     def error(self, content):
         self.logger.error(content)
+        self.logger.removeHandler(self.sh)
+        self.logger.removeHandler(self.fh)
 
     def critical(self,content):
         self.logger.critical(content)
+        self.logger.removeHandler(self.sh)
+        self.logger.removeHandler(self.fh)
 
 
 
