@@ -1,0 +1,5 @@
+/futureloan/mvc/api/member/recharge,13667692121,1000,GET
+/futureloan/mvc/api/member/recharge,13667692121,1500,POST
+/futureloan/mvc/api/member/recharge,13667692121,200,GET
+/futureloan/mvc/api/member/recharge,13667692121,800,GET
+/futureloan/mvc/api/member/recharge,13667692121,9000,POST
