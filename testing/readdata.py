@@ -6,8 +6,9 @@ class ReadData:
         pass
 
     # 从excel读取测试数据,返回列表
-    def read_excel(self,path,sheet_name):
+    def read_excel(self,filename,sheet_name):
         list = []
+        path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
         try:
             wb = xlrd.open_workbook(path)
             sheet = wb.sheet_by_name(sheet_name)
@@ -37,8 +38,9 @@ class ReadData:
 
 
     # 从文本文件读取测试数据,返回列表
-    def read_cvs(self,path):
+    def read_cvs(self,filename):
         list = []
+        path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
         try:
             f = open(path, 'r+', encoding='utf8')
         except IOError as e:
@@ -52,7 +54,7 @@ class ReadData:
 
 def main():
     data = ReadData()
-    list = data.read_excel('test.xls','input')
+    list = data.read_excel('input.xls','input')
     print(list)
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 import logging
 import time
+import os
 from config import Config
 
 LogLevel = Config().getConfig("log","level")
@@ -8,7 +9,8 @@ class Log:
     def __init__(self,name,filename=None):
         self.name = name
         if filename is None:
-            self.filename = 'log_' + time.strftime('%Y_%m_%d') + '.txt'
+            path = os.path.split(os.path.realpath(__file__))[0] + '/log/'
+            self.filename = path + 'log_' + time.strftime('%Y_%m_%d') + '.txt'
         else:
             self.filename = filename
         self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -72,7 +74,12 @@ class Log:
 
 
 
+def main():
+    log = Log('test').info('测试')
 
+
+if __name__ == '__main__':
+    main()
 
 
 
