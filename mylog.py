@@ -1,6 +1,8 @@
 import logging
 import time
+from config import Config
 
+LogLevel = Config().getConfig("log","level")
 
 class Log:
     def __init__(self,name,filename=None):
@@ -29,7 +31,7 @@ class Log:
             'INFO': logging.INFO,
             'DEBUG': logging.DEBUG
         }
-        self.setLevel("INFO")
+        self.setLevel(LogLevel)
 
     def setLevel(self,level):
         if level in self.nameToLevel:

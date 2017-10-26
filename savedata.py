@@ -1,5 +1,5 @@
 import xlwt
-import xlwt3
+# import xlwt3
 import xlutils
 
 class SaveData:
@@ -12,19 +12,20 @@ class SaveData:
             f.write('\n'.join(list(map(str, rowlist))))
 
 
-    def save_excel(self,path,sheet_name,list):
-        wb = xlwt3.Workbook()
+    def save_excel(self,path,list,sheet_name='Sheet1',col=0):
+        wb = xlwt.Workbook()
         sheet = wb.add_sheet(sheet_name)
         for i in range(len(list)):
-            sheet.write(i,0,list[i])
+            sheet.write(i,col,list[i])
         wb.save(path)
 
 
 
 def main():
     data = SaveData()
-    data.save_excel('output.xls','output',range(10))
-    data.save_txt('output.txt',range(10))
+    rowlist = range(10)
+    data.save_excel('output.xls','output',rowlist)
+    data.save_txt('output.txt',rowlist)
 
 
 if __name__ == '__main__':
