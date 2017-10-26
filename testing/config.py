@@ -20,7 +20,7 @@ class Config:
 
 
 def main():
-    value = Config().getConfig("server", "address")
+    value = Config().getConfig("database", "user")
     print(value)
 
 if __name__ == '__main__':

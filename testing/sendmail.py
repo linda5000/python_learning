@@ -5,13 +5,15 @@ from email.header import Header
 from email.mime.image import MIMEImage
 from email import encoders
 from mylog import Log
+from config import Config
 
 class MailCreator:
     def __init__(self):
-        self.mailserver = "smtp.qq.com"          # 邮箱服务器
-        self.port = 465                            # 邮箱服务器端口
-        self.mail_user = "215603651@qq.com"     # 发件人邮箱
-        self.mail_pwd = "uwgwbarofitvbgfg"      # 发件人邮箱授权码
+        c = Config()
+        self.mailserver = c.getConfig("mail", "mailserver")         # 邮箱服务器
+        self.port = c.getConfig("mail", "port")                      # 邮箱服务器端口
+        self.mail_user = c.getConfig("mail", "mail_user")            # 发件人邮箱
+        self.mail_pwd = c.getConfig("mail", "mail_pwd")              # 发件人邮箱授权码
 
 
     def send(self,msg_to,subject,content,attachlist=[]):
