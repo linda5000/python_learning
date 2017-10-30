@@ -15,6 +15,7 @@ class ReadData:
         except Exception as e:
             print('excel读取失败：%s'%e)
         else:
+            key = sheet.row_values(0,1,)
             nrows = sheet.nrows
             ncols = sheet.ncols
             for i in range(nrows):
