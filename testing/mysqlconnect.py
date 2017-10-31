@@ -1,6 +1,8 @@
 import mysql.connector
 from config import Config
+from mylog import Log
 
+log = Log('Mysql')
 
 class Mysql:
     def __init__(self):
@@ -13,21 +15,49 @@ class Mysql:
             'charset': 'utf8'
         }
 
-    def insert(self,data):
+    def select(self,sql):
         try:
             cnn = mysql.connector.connect(**self.config)
             cursor = cnn.cursor()
         except mysql.connector.Error as e:
-            print('connect fails!{}'.format(e))
+            log.error('connect fails!{}'.format(e))
 
         try:
-            sql_query = 'insert into httptest_record(case_no,run_result,run_date) VALUES (%s,%s,now())'
-            cursor.execute(sql_query,data)
-            # re = cursor.fetchall()
-            # print(re)
-
+            cursor.execute(sql)
+            re = cursor.fetchall()
+            return re
         except mysql.connector.Error as e:
-            print('query error!{}'.format(e))
+            log.error('query error!{}'.format(e))
+        finally:
+            cursor.close()
+            cnn.close()
+
+    def ddl(self,sql):
+        try:
+            cnn = mysql.connector.connect(**self.config)
+            cursor = cnn.cursor()
+        except mysql.connector.Error as e:
+            log.error('connect fails!{}'.format(e))
+
+        try:
+            cursor.execute(sql)
+        except mysql.connector.Error as e:
+            log.error('query error!{}'.format(e))
+        finally:
+            cursor.close()
+            cnn.close()
+
+    def insert(self,sql,data):
+        try:
+            cnn = mysql.connector.connect(**self.config)
+            cursor = cnn.cursor()
+        except mysql.connector.Error as e:
+            log.error('connect fails!{}'.format(e))
+
+        try:
+            cursor.execute(sql,data)
+        except mysql.connector.Error as e:
+            log.error('query error!{}'.format(e))
         finally:
             cursor.close()
             cnn.close()
@@ -35,8 +65,9 @@ class Mysql:
 
 
 def main():
-    data = (1,'/futureloan/mvc/api/member/recharge','pass')
-    Mysql().insert(data)
+    sql = 'show tables'
+    result = Mysql().select(sql)
+    print(result)
 
 
 if __name__ == '__main__':
