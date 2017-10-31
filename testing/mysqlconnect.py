@@ -20,10 +20,9 @@ class Mysql:
         except mysql.connector.Error as e:
             print('connect fails!{}'.format(e))
 
-
         try:
-            sql_query = 'insert into httptest_record(case_no,url,test_result,run_date) VALUES (%s,%s,%s,now())'
-            cursor.executemany(sql_query,data)
+            sql_query = 'insert into httptest_record(case_no,run_result,run_date) VALUES (%s,%s,now())'
+            cursor.execute(sql_query,data)
             # re = cursor.fetchall()
             # print(re)
 
@@ -36,7 +35,7 @@ class Mysql:
 
 
 def main():
-    data = ((1,'/futureloan/mvc/api/member/recharge','pass'),)
+    data = (1,'/futureloan/mvc/api/member/recharge','pass')
     Mysql().insert(data)
 
 

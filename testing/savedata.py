@@ -1,6 +1,7 @@
+import xlrd
 import xlwt
 # import xlwt3
-import xlutils
+from  xlutils.copy import copy
 import os
 
 class SaveData:
@@ -23,12 +24,26 @@ class SaveData:
         wb.save(path)
 
 
+class SaveExcel:
+    def __init__(self,filename,sheet_name):
+        self.path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
+        self.wb = xlwt.Workbook()
+        self.sheet = self.wb.add_sheet(sheet_name)
+
+    def write(self,row,col,value):
+        self.sheet.write(row,col,value)
+
+    def save(self):
+        self.wb.save(self.path)
 
 def main():
-    data = SaveData()
-    rowlist = range(10)
-    data.save_excel('output.xls',rowlist,'output')
-    data.save_txt('output.txt',rowlist)
+    # data = SaveData()
+    # rowlist = range(10)
+    # data.save_excel('output.xls',rowlist,'output')
+    # data.save_txt('output.txt',rowlist)
+    zj = SaveExcel('output.xls','output')
+    zj.write(1,'test')
+    zj.save()
 
 
 if __name__ == '__main__':
