@@ -16,7 +16,7 @@ class Http_requests:
         except Exception as e:
             log.error(e)
         else:
-            return response.text
+            return response.json()
 
     def post(self, url,data):
         url = self.ip + url
@@ -25,4 +25,15 @@ class Http_requests:
         except Exception as e:
             log.error(e)
         else:
-            return response.text
+            return response.json()
+
+
+def main():
+    url = '/futureloan/mvc/api/member/recharge'
+    data = {'mobilephone':'13667692121','amount':1000}
+    result = Http_requests().get(url,data)
+    for i in result:
+        print(i,':',result[i])
+
+if __name__ == '__main__':
+    main()
