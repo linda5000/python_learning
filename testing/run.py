@@ -16,7 +16,7 @@ class Http_test:
         else:
             self.input_file = input_file
         if input_sheet is None:
-            self.input_sheet = 'input'
+            self.input_sheet = 'Input'
         else:
             self.input_sheet = input_sheet
         if output_file is None:
@@ -24,7 +24,7 @@ class Http_test:
         else:
             self.output_file = output_file
         if output_sheet is None:
-            self.output_sheet = 'output'
+            self.output_sheet = 'Output'
         else:
             self.output_sheet = output_sheet
 

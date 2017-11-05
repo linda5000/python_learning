@@ -7,8 +7,8 @@ from mylog import Log
 
 
 suite = unittest.TestSuite()
-suite.addTest(TestHttp("test_http_get"))
-suite.addTest(TestHttp("test_http_post"))
+suite.addTest(TestHttp("test_http"))
+
 
 
 now = time.strftime('%Y-%m-%d_%H_%M_%S')
