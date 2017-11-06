@@ -18,7 +18,6 @@ if __name__ == '__main__':
     # html报告输出设置
     path = os.path.split(os.path.realpath(__file__))[0] + '/data/'
     filePath = path + "HttpTestResult" + now + ".html"
-    print(filePath)
     fp = open(filePath,'wb')
 
     log.info("测试报告开始...")
