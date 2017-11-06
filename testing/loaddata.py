@@ -24,7 +24,7 @@ class LoadData:
         expect_data= ReadData().read_excel(input_file, Baseline_sheet)
         self.test_data = []
         if mode == '1':
-            case_list = range(1,len(request_list))
+            case_list = range(1,len(input_data))
         elif mode == '0':
             case_list = eval(Config().getConfig("flag", "caselist"))
         else:
