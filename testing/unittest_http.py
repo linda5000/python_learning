@@ -88,6 +88,10 @@ class TestHttp(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    # out = SaveExcel('output.xls', 'Output')
+    # out.write(row, 0, 'id')
+    # out.write(row, 1, 'result')
+    # out.write(row, 2, 'output')
     suite = unittest.TestLoader().loadTestsFromTestCase(TestHttp)
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)
     out.save()
