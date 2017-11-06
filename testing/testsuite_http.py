@@ -1,33 +1,36 @@
 import unittest
 import time
 import HTMLTestRunner
-from unittest_http import TestHttp
+from unittest_http import TestHttp,out
 from sendmail import MailCreator
 from mylog import Log
+from savedata import SaveExcel
 
+# 引用ddt后无法使用
+# suite = unittest.TestSuite()
+# suite.addTest(TestHttp("test_http"))
 
-suite = unittest.TestSuite()
-suite.addTest(TestHttp("test_http"))
-
-
-
+suite = unittest.TestLoader().loadTestsFromTestCase(TestHttp)
 now = time.strftime('%Y-%m-%d_%H_%M_%S')
+log = Log('testsuite')
 
 if __name__ == '__main__':
-    # 执行测试集合
+    # html报告输出设置
     filePath = "HttpTestResult" + now + ".html"
     fp = open(filePath,'wb')
 
-    # log = Log('testsuite')
-    Log('testsuite').info("测试报告开始...")
-    # log.info("测试报告开始...")
+    log.info("测试报告开始...")
+
     # 生成报告的Title,描述
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title='Python Test Report',description='This  is Python  Report')
     runner.run(suite)
 
     fp.close()
-    Log('testsuite').info("测试报告完成...")
-    # log.info("测试报告完成...")
+
+    # excel输出保存
+    out.save()
+
+    log.info("测试报告完成...")
 
     # 发送邮件信息
     subject = "小黑的测试邮件"
