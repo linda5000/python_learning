@@ -1,7 +1,7 @@
 import unittest
 import time,os
 import HTMLTestRunner
-from unittest_http import TestHttp,out
+from unittest_http import TestHttp
 from sendmail import MailCreator
 from mylog import Log
 from savedata import SaveExcel
@@ -27,9 +27,6 @@ if __name__ == '__main__':
     runner.run(suite)
 
     fp.close()
-
-    # excel输出保存
-    out.save()
 
     log.info("测试报告完成...")
 

@@ -12,6 +12,8 @@ out = SaveExcel('output.xls', 'Output')
 out.write(row, 0, 'id')
 out.write(row, 1, 'result')
 out.write(row, 2, 'output')
+out.save()
+
 
 @ddt.ddt
 class TestHttp(unittest.TestCase):
@@ -22,7 +24,6 @@ class TestHttp(unittest.TestCase):
 
     def http_get(self,id,url,data,expectresult):
         global row
-        global out
         log.info('TestHttp get方法...')
         r = Http_requests()
         response = r.get(url,data)
@@ -38,12 +39,11 @@ class TestHttp(unittest.TestCase):
             out.write(row, 0, id)
             out.write(row, 1, result)
             out.write(row, 2, output)
-
+            out.save()
 
 
     def http_post(self,id,url,data,expectresult):
         global row
-        global out
         log.info('TestHttp post方法...')
         r = Http_requests()
         response = r.post(url,data)
@@ -59,12 +59,13 @@ class TestHttp(unittest.TestCase):
             out.write(row, 0, id)
             out.write(row, 1, result)
             out.write(row, 2, output)
+            out.save()
 
     @ddt.data(*test_data)
     # @ddt.unpack
     def test_http(self,test_data):
         global row
-        global out
+        # global out
         id = test_data[0]
         url = test_data[1]
         data = {'mobilephone': test_data[3], 'amount': test_data[4]}
@@ -77,6 +78,7 @@ class TestHttp(unittest.TestCase):
             row += 1
             out.write(row, 0, id)
             out.write(row, 1, 'error')
+            out.save()
             log.error("请求方法错误")
             raise Exception("请求方法错误")
 
@@ -88,13 +90,9 @@ class TestHttp(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    # out = SaveExcel('output.xls', 'Output')
-    # out.write(row, 0, 'id')
-    # out.write(row, 1, 'result')
-    # out.write(row, 2, 'output')
     suite = unittest.TestLoader().loadTestsFromTestCase(TestHttp)
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)
-    out.save()
+
 
 
 
