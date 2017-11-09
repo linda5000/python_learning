@@ -1,7 +1,7 @@
 
-from test_program.public.http_request import HttpRequest
-from test_program.public.readdata import ReadData
-from test_program.public.savedata import SaveExcel
+from public.http_request import HttpRequest
+from public.readdata import ReadData
+from public.savedata import SaveExcel
 
 class RechargeTest:
     def __init__(self):

@@ -1,5 +1,5 @@
 import requests
-from test_program.public.config import Config
+from public.config import Config
 
 
 
