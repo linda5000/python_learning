@@ -1,8 +1,6 @@
 import requests
-from config import Config
-from log import Log
+from test_program.public.config import Config
 
-log = Log('HttpRequest')
 
 
 class HttpRequest:

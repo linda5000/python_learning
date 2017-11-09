@@ -1,7 +1,7 @@
 import logging
 import time
 import os
-from config import Config
+from test_program.public.config import Config
 
 LogLevel = Config().getConfig("log","level")
 

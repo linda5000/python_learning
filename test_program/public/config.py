@@ -7,6 +7,7 @@ class Config:
     def __init__(self,path=None):
         if path is None:
             self.path = '../conf/config.ini'
+            print(path)
             # os.path.split(os.path.realpath(__file__))[0] 得到的是当前模块的目录
         else:
             self.path = path

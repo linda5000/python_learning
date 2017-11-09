@@ -1,5 +1,5 @@
-from source.recharge_test import RechargeTest
-from source.register_test import RegisterTest
+from source.recharge.recharge_test import RechargeTest
+from source.register.register_test import RegisterTest
 
 class runner:
     def __init__(self,test_interface):
