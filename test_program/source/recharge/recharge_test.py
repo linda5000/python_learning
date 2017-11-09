@@ -1,18 +1,24 @@
+
 from test_program.public.http_request import HttpRequest
-from test_program.readdata import ReadData
-from test_program.savedata import SaveData,SaveExcel
+from test_program.public.readdata import ReadData
+from test_program.public.savedata import SaveExcel
 
 class RechargeTest:
-    def __init__(self,input_data,output_data):
-        self.input_data = "recharge_data"
-        self.output_data = "recharge_result"
+    def __init__(self):
+        self.input_file = "recharge_data.xls"
+        self.input_sheet = "test_data"
+        self.output_file = "recharge_result.xls"
+        self.output_sheet = "test_result"
 
     def run(self):
         hr = HttpRequest()
-        test_data = read_excel(self.input_file, input_sheet)
+        test_data = ReadData().read_excel(self.input_file, self.input_sheet)
         run_list = range(1, len(test_data))
+        ws = SaveExcel(self.output_file, self.output_sheet)
+        ws.write(0, 0, 'id')
+        ws.write(0, 1, 'run_result')
+        row = 1
         for i in run_list:
-            row = 1
             url = test_data[i][3]
             method = test_data[i][4]
             data = {'mobilephone': test_data[i][1], 'amount': test_data[i][2]}
@@ -23,6 +29,7 @@ class RechargeTest:
             else:
                 s = '请求方法有误'
 
-            ws.write(row,0,request_list[i][0])
-            ws.write(row,1,s)
-            row = row + 1
+            ws.write(row,0,test_data[i][0])
+            ws.write(row,1,str(s))
+            ws.save()
+            row += 1

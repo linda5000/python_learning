@@ -1,3 +1,8 @@
+import sys,os
+
+sys.path.append(os.path.split(os.path.realpath(__file__))[0])
+
+
 from source.recharge.recharge_test import RechargeTest
 from source.register.register_test import RegisterTest
 
