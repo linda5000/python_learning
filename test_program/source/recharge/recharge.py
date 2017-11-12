@@ -6,7 +6,7 @@ from public.log import Log
 
 log = Log('RechargeTest')
 
-class RechargeTest:
+class Recharge:
     def __init__(self):
         c = Config()
         self.input_file = c.getTest("rechargefile","input_file")

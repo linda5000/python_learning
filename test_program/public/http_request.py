@@ -1,7 +1,8 @@
 import requests
 from public.config import Config
+from public.log import Log
 
-
+log = Log("HttpRequest")
 
 class HttpRequest:
     def __init__(self):

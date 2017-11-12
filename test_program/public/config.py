@@ -2,23 +2,24 @@
 
 import configparser
 import os
+from public.globalpath import config_path
 
 class Config:
-    def __init__(self,path=None):
-        if path is None:
-            self.path = '../conf/config.ini'
-            # os.path.split(os.path.realpath(__file__))[0] 得到的是当前模块的目录
-        else:
-            self.path = path
+    def __init__(self):
+        self.path = config_path
 
 
     def getConfig(self,section,key):
         config = configparser.ConfigParser()
-        config.read(self.path,encoding='utf8')
+        config.read(self.path + "config.ini",encoding='utf8')
         # return config[section][key]
         return config.get(section, key)
 
-
+    def getTest(self,section,key):
+        config = configparser.ConfigParser()
+        config.read(self.path + "test.ini",encoding='utf8')
+        # return config[section][key]
+        return config.get(section, key)
 
 def main():
     value = Config().getConfig("database", "user")

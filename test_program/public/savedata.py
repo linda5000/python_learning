@@ -1,8 +1,11 @@
-import xlrd
-import xlwt
+import time
+import xlrd,xlwt
 # import xlwt3
-from  xlutils.copy import copy
-import os
+# from  xlutils.copy import copy
+from public.globalpath import savedata_path
+from public.log import Log
+
+log = Log("SaveData")
 
 class SaveData:
     def __init__(self):
@@ -10,13 +13,13 @@ class SaveData:
 
 
     def save_txt(self,filename,rowlist):
-        path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
+        path = savedata_path + filename
         with open(path,'w+')  as f:
             f.write('\n'.join(list(map(str, rowlist))))
 
 
     def save_excel_once(self,filename,list,sheet_name='Sheet1',col=0):
-        path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
+        path = savedata_path + filename
         wb = xlwt.Workbook()
         sheet = wb.add_sheet(sheet_name)
         for i in range(len(list)):
@@ -26,9 +29,8 @@ class SaveData:
 
 class SaveExcel:
     def __init__(self,filename,sheet_name):
-        # self.path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
-        self.path = '/result/' + filename
-
+        self.filename =  filename + "_" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".xls"
+        self.path = savedata_path + self.filename
         self.wb = xlwt.Workbook()
         self.sheet = self.wb.add_sheet(sheet_name)
 
@@ -36,6 +38,11 @@ class SaveExcel:
         self.sheet.write(row,col,value)
 
     def save(self):
-        self.wb.save(self.path)
+        try:
+            self.wb.save(self.path)
+            log.debug(self.filename + "保存成功")
+        except Exception as e:
+            log.error(e)
+
 
 

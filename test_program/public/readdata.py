@@ -1,5 +1,9 @@
 import xlrd
 import os
+from public.globalpath import readdata_path
+from public.log import Log
+
+log = Log("ReadData")
 
 class ReadData:
     def __init__(self):
@@ -8,13 +12,14 @@ class ReadData:
     # 从excel读取测试数据,返回列表
     def read_excel(self,filename,sheet_name):
         list = []
-        path = os.path.split(os.path.realpath(__file__))[0] + '../data/' + filename
+        path = readdata_path + filename + ".xls"
         try:
             wb = xlrd.open_workbook(path)
             sheet = wb.sheet_by_name(sheet_name)
         except Exception as e:
-            print('excel读取失败：%s'%e)
+            log.error(e)
         else:
+            log.debug(filename + '读取成功')
             nrows = sheet.nrows
             ncols = sheet.ncols
             for i in range(nrows):
@@ -40,7 +45,7 @@ class ReadData:
     # 从文本文件读取测试数据,返回列表
     def read_cvs(self,filename):
         list = []
-        path = os.path.split(os.path.realpath(__file__))[0] + '/data/' + filename
+        path = readdata_path + filename + ".cvs"
         try:
             f = open(path, 'r+', encoding='utf8')
         except IOError as e:
@@ -52,10 +57,3 @@ class ReadData:
         return list
 
 
-def main():
-    data = ReadData()
-    list = data.read_excel('input.xls','input')
-    print(list)
-
-if __name__ == '__main__':
-    main()

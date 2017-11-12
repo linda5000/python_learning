@@ -1,7 +1,8 @@
 import logging
 import time
 import os
-from test_program.public.config import Config
+from public.config import Config
+from public.globalpath import log_path
 
 LogLevel = Config().getConfig("log","level")
 
@@ -9,7 +10,7 @@ class Log:
     def __init__(self,name,filename=None):
         self.name = name
         if filename is None:
-            path = '../log/'
+            path = log_path
             self.filename = path + 'log_' + time.strftime('%Y_%m_%d') + '.txt'
         else:
             self.filename = filename
