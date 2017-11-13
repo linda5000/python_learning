@@ -5,11 +5,11 @@ from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
 
-log = Log('RechargeTest')
+log = Log('TestHttpInterface')
 
-class TestRecharge(unittest.TestCase):
+class TestHttpInterface(unittest.TestCase):
     def __init__(self,methodName,row, case_id, case_description, url, data, expect_result, save_sheet_obj):
-        super(TestRecharge,self).__init__(methodName)
+        super(TestHttpInterface,self).__init__(methodName)
         self.row = row
         self.case_id = case_id
         self.case_description = case_description
@@ -21,10 +21,10 @@ class TestRecharge(unittest.TestCase):
 
 
     def setUp(self):
-        log.info('TestRecharge测试用例开始执行')
+        log.info('测试用例开始执行')
 
 
-    def test_recharge(self):
+    def runTest(self):
         hr = HttpRequest()
         actual_result = None
         result = ''
@@ -58,4 +58,4 @@ class TestRecharge(unittest.TestCase):
 
 
     def tearDown(self):
-        log.info('TestRecharge测试用例结束执行')
+        log.info('测试用例结束执行')

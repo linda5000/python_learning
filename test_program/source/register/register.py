@@ -4,16 +4,16 @@ from public.readdata import ReadData
 from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
-from source.recharge.test_recharge import TestRecharge
+from source.register.test_register import TestRegister
 
-log = Log('Recharge')
+log = Log('Register')
 
-class Recharge:
+class Register:
     def __init__(self):
-        self.input_file = Config().getTest("rechargefile","input_file")
-        self.input_sheet = Config().getTest("rechargefile","input_sheet")
-        self.output_file = Config().getTest("rechargefile","output_file")
-        self.output_sheet = Config().getTest("rechargefile","output_sheet")
+        self.input_file = Config().getTest("registerfile","input_file")
+        self.input_sheet = Config().getTest("registerfile","input_sheet")
+        self.output_file = Config().getTest("registerfile","output_file")
+        self.output_sheet = Config().getTest("registerfile","output_sheet")
 
     def run(self):
         log.debug("run开始执行")
@@ -24,28 +24,29 @@ class Recharge:
         ws.write(0, 2, 'expect_result')
         ws.write(0, 3, 'actual_result')
         ws.write(0, 4, 'result')
-        mode = Config().getTest("rechargemode", "mode")
+        mode = Config().getTest("registermode", "mode")
         if mode == '1':
             run_list = range(1, len(test_data))
         elif mode == '0':
-            run_list = eval(Config().getTest("rechargemode", "caselist"))
+            run_list = eval(Config().getTest("registermode", "caselist"))
         else:
             run_list = []
             log.error("mode配置有误")
+
         suite = unittest.TestSuite()
+
         row = 1
         for i in run_list:
             case_id = test_data[i][0]
             case_description = test_data[i][1]
             url = test_data[i][3]
-            data = {'mobilephone': test_data[i][4], 'amount': test_data[i][5]}
-            expect_result = str(test_data[i][6])
-            suite.addTest(TestRecharge("test_recharge",row,case_id,case_description,url,data,expect_result,ws))
+            data = {'mobilephone': test_data[i][4], 'pwd': test_data[i][5],'regname':test_data[i][6]}
+            expect_result = str(test_data[i][7])
+            suite.addTest(TestRegister("test_register",row,case_id,case_description,url,data,expect_result,ws))
             row += 1
 
         unittest.TextTestRunner(verbosity=2).run(suite)
         return ws.path
 
         log.debug("run结束执行")
-
 
