@@ -1,4 +1,5 @@
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
@@ -6,6 +7,8 @@ from email.mime.image import MIMEImage
 from email import encoders
 from public.log import Log
 from public.config import Config
+
+log = Log('sendmail')
 
 class Mail:
     def __init__(self):
@@ -31,12 +34,12 @@ class Mail:
         text_msg = MIMEText(content,'html', 'utf-8')
         msg.attach(text_msg)
         if attachlist:
-            for i in attachlist:
-                # 构造附件
-                with open(i, 'rb') as fp:
+            for file in attachlist:
+                with open(file, 'rb') as fp:
+                    filename = os.path.split(file)[-1]
                     attach = MIMEText(fp.read(), 'base64', 'utf-8')
                     attach["Content-Type"] = 'application/octet-stream'
-                    attach.add_header('Content-Disposition', 'attachment',filename=('gbk', '',i))
+                    attach.add_header('Content-Disposition', 'attachment',filename=('gbk', '',filename))
                     msg.attach(attach)
 
 
@@ -45,9 +48,9 @@ class Mail:
             s = smtplib.SMTP_SSL(self.mailserver,self.port)
             s.login(msg_from,pwd)
             s.sendmail(msg_from,msg_to,msg.as_string())
-            Log('sendmail').info("邮件发送成功")
+            log.info("邮件发送成功")
         except Exception as e:
-            Log('sendmail').error("邮件发送失败")
+            log.error("邮件发送失败")
         finally:
             s.quit()
 

@@ -5,7 +5,7 @@ from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
 
-log = Log('RechargeTest')
+log = Log('TestRecharge')
 
 class TestRecharge(unittest.TestCase):
     def __init__(self,methodName,row, case_id, case_description, url, data, expect_result, save_sheet_obj):
@@ -21,7 +21,7 @@ class TestRecharge(unittest.TestCase):
 
 
     def setUp(self):
-        log.info('TestRecharge测试用例开始执行')
+        log.info('测试用例开始执行')
 
 
     def test_recharge(self):
@@ -58,4 +58,4 @@ class TestRecharge(unittest.TestCase):
 
 
     def tearDown(self):
-        log.info('TestRecharge测试用例结束执行')
+        log.info('测试用例结束执行')
