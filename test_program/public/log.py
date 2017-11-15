@@ -7,13 +7,13 @@ from public.globalpath import log_path
 LogLevel = Config().getConfig("log","level")
 
 class Log:
-    def __init__(self,name,filename=None):
+    def __init__(self,name,filepath=None):
         self.name = name
-        if filename is None:
+        if filepath is None:
             path = log_path
-            self.filename = path + 'log_' + time.strftime('%Y_%m_%d') + '.txt'
+            self.filepath = path + 'log_' + time.strftime('%Y_%m_%d') + '.txt'
         else:
-            self.filename = filename
+            self.filepath = filepath
         self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger(self.name)
 
@@ -21,7 +21,7 @@ class Log:
         self.sh.setFormatter(self.formatter)
         self.logger.addHandler(self.sh)
 
-        self.fh = logging.FileHandler(self.filename,encoding='utf-8')
+        self.fh = logging.FileHandler(self.filepath,encoding='utf-8')
         self.fh.setFormatter(self.formatter)
         self.logger.addHandler(self.fh)
 

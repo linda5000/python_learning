@@ -8,20 +8,22 @@ class HttpRequest:
     def __init__(self):
         self.ip = Config().getConfig("server","host")
 
-    def get(self,url,data):
+    def get(self,url,params=None,timeout=0.001):
         url = self.ip + url
         try:
-            response = requests.get(url, data)
+            response = requests.get(url, params)
         except Exception as e:
+            raise e
             log.error(e)
         else:
             return response.json()
 
-    def post(self, url,data):
+    def post(self, url,params=None,timeout=0.001):
         url = self.ip + url
         try:
-            response = requests.post(url, data)
+            response = requests.post(url, params)
         except Exception as e:
+            raise e
             log.error(e)
         else:
             return response.json()
