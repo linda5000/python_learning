@@ -7,7 +7,7 @@ from public.log import Log
 
 log = Log("SaveData")
 
-class SaveData:
+class SaveData_bak:
     def __init__(self):
         pass
 

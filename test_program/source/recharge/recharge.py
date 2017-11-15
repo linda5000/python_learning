@@ -1,10 +1,13 @@
 import unittest
+import HTMLTestRunner
+import time
 from public.http_request import HttpRequest
 from public.readdata import ReadData
 from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
 from source.recharge.test_recharge import TestRecharge
+from public.globalpath import savedata_path
 
 log = Log('Recharge')
 
@@ -43,9 +46,19 @@ class Recharge:
             suite.addTest(TestRecharge("test_recharge",row,case_id,case_description,url,data,expect_result,ws))
             row += 1
 
-        unittest.TextTestRunner(verbosity=2).run(suite)
-        return ws.path
+        # unittest.TextTestRunner(verbosity=2).run(suite)
+
+        repoert_path = savedata_path + "test_recharge_Result" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".html"
+        fp = open(repoert_path, 'wb')
+
+        runner = HTMLTestRunner.HTMLTestRunner(stream=fp, verbosity=2, title='Python Test Report',description='This  is Python  Report')
+        runner.run(suite)
+        fp.close()
 
         log.debug("run结束执行")
+
+        return repoert_path
+
+
 
 
