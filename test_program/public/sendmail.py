@@ -50,7 +50,7 @@ class Mail:
             s.sendmail(msg_from,msg_to,msg.as_string())
             log.info("邮件发送成功")
         except Exception as e:
-            log.error("邮件发送失败")
+            log.error("邮件发送失败:" + str(s))
         finally:
             s.quit()
 

@@ -34,7 +34,7 @@ def main():
     subject = "项目接口测试结果"
     content = "请查收测试结果，谢谢！"
     msg_to = Config().getTest("result_sendmail","msg_to")
-    Mail().send(msg_to,subject,content,r.result_list)
+    # Mail().send(msg_to,subject,content,r.result_list)
 
 if __name__ == '__main__':
     main()

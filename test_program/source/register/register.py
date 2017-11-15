@@ -6,7 +6,7 @@ from public.readdata import ReadData
 from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
-from source.register.test_register import TestRegister
+from public.test_http_interface import TestHttpInterface
 from public.globalpath import savedata_path
 
 log = Log('Register')
@@ -45,13 +45,13 @@ class Register:
             url = test_data[i][3]
             data = {'mobilephone': test_data[i][4], 'pwd': test_data[i][5],'regname':test_data[i][6]}
             expect_result = str(test_data[i][7])
-            suite.addTest(TestRegister("test_register",row,case_id,case_description,url,data,expect_result,ws))
+            suite.addTest(TestHttpInterface("runTest",row,case_id,case_description,url,data,expect_result,ws))
             row += 1
 
         # unittest.TextTestRunner(verbosity=2).run(suite)
 
-        repoert_path = savedata_path + "test_recharge_Result" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".html"
-        fp = open(repoert_path, 'wb')
+        report_path = savedata_path + "Register_Result_" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".html"
+        fp = open(report_path, 'wb')
 
         runner = HTMLTestRunner.HTMLTestRunner(stream=fp, verbosity=2, title='Python Test Report',
                                                description='This  is Python  Report')
@@ -60,7 +60,7 @@ class Register:
 
         log.debug("run结束执行")
 
-        return repoert_path
+        return report_path
 
 
 

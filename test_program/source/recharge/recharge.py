@@ -6,7 +6,7 @@ from public.readdata import ReadData
 from public.savedata import SaveExcel
 from public.config import Config
 from public.log import Log
-from source.recharge.test_recharge import TestRecharge
+from public.test_http_interface import TestHttpInterface
 from public.globalpath import savedata_path
 
 log = Log('Recharge')
@@ -43,13 +43,13 @@ class Recharge:
             url = test_data[i][3]
             data = {'mobilephone': test_data[i][4], 'amount': test_data[i][5]}
             expect_result = str(test_data[i][6])
-            suite.addTest(TestRecharge("test_recharge",row,case_id,case_description,url,data,expect_result,ws))
+            suite.addTest(TestHttpInterface("runTest",row,case_id,case_description,url,data,expect_result,ws))
             row += 1
 
         # unittest.TextTestRunner(verbosity=2).run(suite)
 
-        repoert_path = savedata_path + "test_recharge_Result" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".html"
-        fp = open(repoert_path, 'wb')
+        report_path = savedata_path + "Recharge_Result_" + time.strftime('%Y-%m-%d_%H_%M_%S') + ".html"
+        fp = open(report_path, 'wb')
 
         runner = HTMLTestRunner.HTMLTestRunner(stream=fp, verbosity=2, title='Python Test Report',description='This  is Python  Report')
         runner.run(suite)
@@ -57,7 +57,7 @@ class Recharge:
 
         log.debug("run结束执行")
 
-        return repoert_path
+        return report_path
 
 
 
