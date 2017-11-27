@@ -32,22 +32,23 @@ class TestHttpInterface(unittest.TestCase):
             response_get = hr.post(self.url, self.data)
             response_post = hr.post(self.url, self.data)
         except Exception as e:
+            result = 'error'
             log.error(e)
+            raise e
         else:
             output_get = response_get['code']
             output_post = response_post['code']
+            if output_get == output_post:
+                actual_result = output_get
+            else:
+                actual_result = "GET和POST方法响应结果不一致:" + "GET方法结果" + output_get + "POST方法结果" + output_post
+            try:
+                self.assertEqual(actual_result, self.expect_result)
+                result = 'pass'
+            except AssertionError as e:
+                result = 'fail'
+                raise e
 
-        if output_get == output_post:
-            actual_result = output_get
-        else:
-            actual_result = "GET和POST方法响应结果不一致:" + "GET方法结果" + output_get + "POST方法结果" + output_post
-
-        try:
-            self.assertEqual(actual_result, self.expect_result)
-            result = 'pass'
-        except AssertionError as e:
-            result = 'fail'
-            raise e
         finally:
             self.save_sheet_obj.write(self.row, 0, self.case_id)
             self.save_sheet_obj.write(self.row, 1, self.case_description)
@@ -55,6 +56,7 @@ class TestHttpInterface(unittest.TestCase):
             self.save_sheet_obj.write(self.row, 3, actual_result )
             self.save_sheet_obj.write(self.row, 4, result)
             self.save_sheet_obj.save()
+
 
 
     def tearDown(self):
