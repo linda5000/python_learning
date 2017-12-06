@@ -7,6 +7,6 @@ class Wait:
     def __init__(self,driver,timeout,frequency):
         self.w = WebDriverWait(driver, timeout, frequency)
 
-    def xpath(self,xpath):
+    def by_xpath(self,xpath):
         locator = (By.XPATH,xpath)
         self.w.until(EC.visibility_of_element_located(locator))

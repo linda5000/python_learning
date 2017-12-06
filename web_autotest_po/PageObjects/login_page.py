@@ -1,14 +1,11 @@
 from Common.Wait import Wait
+from login_page_locater import *
 import time
 
 class LoginPage:
     def __init__(self,driver,u,p,u_value,p_value,submit):
         self.driver = driver
-        self.u = u
-        self.p = p
-        self.u_value = u_value
-        self.p_value = p_value
-        self.submit = submit
+
 
     def login(self):
         wait = Wait(self.driver,40,0.5)
