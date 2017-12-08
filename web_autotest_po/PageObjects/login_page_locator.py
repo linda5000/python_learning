@@ -1,4 +1,4 @@
 # 登录信息
-u = "//input[@name='phone']"
-p = "//input[@name='password']"
-submit = "//button[@type='button']"
+user_locater = "//input[@name='phone']"
+pwd_locater = "//input[@name='password']"
+submit_locater = "//button[@type='button']"

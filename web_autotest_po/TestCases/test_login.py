@@ -1,15 +1,17 @@
-from PageObjects.login_page import *
+from PageObjects.login_page import LoginPage
+from selenium import webdriver
 import unittest
 
-class TestLog(unittest.TestCase):
+class TestLogin(unittest.TestCase):
 
     def setUp(self):
-        pass
+        browser = webdriver.Chrome()
 
 
     def tearDown(self):
-        pass
+        browser.close()
+        browser.quit()
 
 
     def test_login_sucess(self):
-        pass
+        LoginPage(browser)
