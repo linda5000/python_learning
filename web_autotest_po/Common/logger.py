@@ -1,14 +1,13 @@
 import logging
 import os
+from Common.global_path import log_path
 
-class CommLog:
+class Log:
 
     def __init__(self,logname):
         self.mylog = logging.getLogger(logname)
         self.mylog.setLevel(logging.INFO)
         self.logpath = log_path + "web_autoTest.log"
-        print("日志路径：")
-        print(self.logpath)
 
     def setFormatter(self):
         fmt = " %(asctime)s  %(levelname)s %(filename)s %(funcName)s [ line:%(lineno)d ] %(message)s"
@@ -50,7 +49,7 @@ class CommLog:
         self.mylog.exception(message)
 
 
-myLog = CommLog("web_autoTest")
+myLog = Log("web_autoTest")
 myLog.add_StreamHandler(logging.INFO)
 myLog.add_RotatingFileHandler(logging.INFO)
 

@@ -16,9 +16,3 @@ class ReadConfig:
         return config.get(section, key)
 
 
-def main():
-    value = ReadConfig().getConfig("server", "host")
-    print(value)
-
-if __name__ == '__main__':
-    main()
