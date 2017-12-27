@@ -13,7 +13,7 @@ import pytest
 class TestLogin(unittest.TestCase):
 
     verificationErrors = []
-    url = "http://120.76.42.189:8765/Index/login.html"
+    url = login_url
 
     def setUp(self):
         myLog.info("TestLogin测试用例开始执行……")
