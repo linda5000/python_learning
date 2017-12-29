@@ -1,7 +1,9 @@
-# 登录页面元素定位(xpath)
+# 登录页面元素定位
 
 # 手机号输入框
-user_locater = "//input[@name='phone']"
+phone_locater = "com.xxzb.fenwoo:id/et_phone"
+
+button = "com.xxzb.fenwoo:id/btn_next_step"
 
 # 密码输入框
 pwd_locater = "//input[@name='password']"
