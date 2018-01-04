@@ -1,5 +1,3 @@
-from selenium import webdriver
-from Common.wait import Wait
 from PageObjects.login_page_locator import *
 import time
 
@@ -7,6 +5,10 @@ class LoginPage:
     def __init__(self,driver):
         self.driver = driver
         
+
+    def login_click(self):
+        self.driver.find_element_by_id("com.xxzb.fenwoo:id/btn_login").click()
+
 
 
 # 输入手机号，点击下一步

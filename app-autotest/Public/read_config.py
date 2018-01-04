@@ -13,6 +13,6 @@ class ReadConfig:
     def getConfig(self,section,key):
         config = configparser.ConfigParser()
         config.read(self.path,encoding='utf8')
-        return config.get(section, key)
+        return eval(config.get(section, key))
 
 

@@ -3,8 +3,7 @@ from PageObjects.bid_page import BidPage
 from PageObjects.home_page import  HomePage
 from PageObjects.accountInfo_page import  AccountInfoPage
 from Common.global_path import image_path
-from Common.logger import myLog
-from selenium import webdriver
+from Public.logger import myLog
 from TestData.common_data import *
 from TestData.invest_data import *
 import unittest
@@ -12,14 +11,14 @@ import datetime
 import time
 import pytest
 
-@pytest.mark.usefixtures("login_web")
+# @pytest.mark.usefixtures("login_web")
 class TestInvest():
 
     verificationErrors = []
 
-    @pytest.mark.smoke
+    # @pytest.mark.smoke
     def test_invest_sucess(self,login_web):
-        HomePage(login_web).bid_click()
+        LoginPage(login_web).login_click()
         invest_page = InvestPage(login_web)
         before_amcount = float(invest_page.get_investInputAmcount_by_bidname(bidname))
         invest_page.investInput_by_bidname(bidname,right_amcount)
